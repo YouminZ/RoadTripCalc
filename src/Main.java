@@ -10,12 +10,37 @@ public class Main {
         float totalPerson1 = getTotal1(numOfTrans1,person[0]);  //calculates the total amount spent by person 1
         float totalPerson2 = getTotal1(numOfTrans2,person[1]);  //calculate the total amount spent by person 2
 
+        //prints total for person 1
         System.out.printf("Total for "+ person[0] + " is $%.2f%n", totalPerson1);
+        //prints total for person 2
         System.out.printf("Total for "+ person[1] + " is $%.2f%n", totalPerson2);
 
+        //Calculate how much each person owes each
+        getTotalEach(totalPerson1, totalPerson2 ,person);
     }
 
-    //get the number of transaction made by first person
+    //calculate and prints how each the person owes the other person
+    public static float getTotalEach(float totalPerson1, float totalPerson2, String person[]){
+        float totalCombined = 0;
+        float halfPerson1 = 0;
+        float halfPerson2 = 0;
+
+        halfPerson1 = totalPerson1/2;
+        halfPerson2 = totalPerson2/2;
+
+        if(halfPerson1 > halfPerson2){
+            totalCombined = halfPerson1 - halfPerson2;
+            System.out.printf(person[1] + " owes " + person[0] + " $%.2f%n", totalCombined);
+        }
+        else{
+            totalCombined = halfPerson2 - halfPerson1;
+            System.out.printf(person[0] + " owes " + person[1] + " $%.2f%n", totalCombined);
+        }
+
+        return totalCombined;
+    }
+
+    //get the number of transaction made by person
     public static int getTrans(String person){
         int trans = 0;
 
@@ -27,7 +52,7 @@ public class Main {
         return trans;
     }
 
-    //get the name of the first person
+    //get the name of the persons
     public static String[] getName(String[] person){
 
         for (int i = 0; i < person.length; i++) {
