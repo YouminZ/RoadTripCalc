@@ -7,20 +7,24 @@ public class Main {
         getName(person);   //call get name to get persons names
         float numOfTrans1[] = new float[getTrans(person[0])];   //get number of transactions made by person 1
         float numOfTrans2[] = new float[getTrans(person[1])];   //get number of transactions made by person 1
-        float totalPerson1 = getTotal1(numOfTrans1,person[0]);  //calculates the total amount spent by person 1
-        float totalPerson2 = getTotal1(numOfTrans2,person[1]);  //calculate the total amount spent by person 2
+        float totalPerson1 = getTotal(numOfTrans1,person[0]);  //calculates the total amount spent by person 1
+        float totalPerson2 = getTotal(numOfTrans2,person[1]);  //calculate the total amount spent by person 2
+        float tripTotal = totalPerson1 + totalPerson2;
 
         //prints total for person 1
         System.out.printf("Total for "+ person[0] + " is $%.2f%n", totalPerson1);
         //prints total for person 2
         System.out.printf("Total for "+ person[1] + " is $%.2f%n", totalPerson2);
 
+        //prints total cost of trip
+        System.out.printf("Total for the trip was $%.2f%n", tripTotal);
+
         //Calculate how much each person owes each
         getTotalEach(totalPerson1, totalPerson2 ,person);
     }
 
     //calculate and prints how each the person owes the other person
-    public static float getTotalEach(float totalPerson1, float totalPerson2, String person[]){
+    public static void getTotalEach(float totalPerson1, float totalPerson2, String person[]){
         float totalCombined = 0;
         float halfPerson1 = 0;
         float halfPerson2 = 0;
@@ -36,8 +40,6 @@ public class Main {
             totalCombined = halfPerson2 - halfPerson1;
             System.out.printf(person[0] + " owes " + person[1] + " $%.2f%n", totalCombined);
         }
-
-        return totalCombined;
     }
 
     //get the number of transaction made by person
@@ -47,7 +49,7 @@ public class Main {
         System.out.println("Enter number of transactions made for " + person);
         trans = keyboard.nextInt();
 
-        String str1 = keyboard.nextLine();
+        String buffer = keyboard.nextLine();
 
         return trans;
     }
@@ -64,7 +66,7 @@ public class Main {
 
 
     //get total amount spent by person
-    public static float getTotal1(float numOfTrans[], String person){
+    public static float getTotal(float numOfTrans[], String person){
         float total = 0;
         for(int i = 0; i < numOfTrans.length; i++){
             System.out.println("Enter amount for transaction number " + (i+1) + " for " + person);
